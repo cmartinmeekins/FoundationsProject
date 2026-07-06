@@ -143,10 +143,41 @@
   }
 
   @media print {
-    body { background: #fff; }
-    .wrap { padding: 24px; max-width: 100%; }
-    .brief, .term, .stop { box-shadow: none; }
-    .stop { break-inside: avoid; }
+    @page { size: A4; margin: 10mm 11mm; }
+    body { background: #fff; font-size: 8.9px; }
+    .wrap { padding: 0; max-width: 100%; }
+
+    .eyebrow { font-size: 8.7px; letter-spacing: .2em; margin-bottom: 5px; }
+    h1 { font-size: 22px; }
+    .sub { font-size: 9.3px; margin-top: 4px; }
+    .rule { margin: 10px 0 12px; width: 56px; }
+
+    /* two-column compact chronology; drop the continuous rail */
+    .tl { padding-left: 0; margin-top: 0;
+          column-count: 2; column-gap: 20px; column-fill: balance; }
+    .tl::before { display: none; }
+
+    .stop {
+      padding: 0 0 9px 10px; margin-bottom: 9px;
+      border-left: 2px solid var(--rail);
+      break-inside: avoid; -webkit-column-break-inside: avoid;
+    }
+    .stop::before, .stop.upcoming::before, .stop.upcoming::after { display: none; }
+
+    .date { font-size: 9.8px; margin-bottom: 1px; }
+    .stop h2 { font-size: 12.5px; line-height: 1.15; }
+    .stop h2 span { font-size: 10.5px !important; }
+    .who { font-size: 8.9px; margin-top: 1px; }
+
+    .rows { gap: 4.5px; margin-top: 5px; }
+    .row { grid-template-columns: 68px 1fr; gap: 8px; }
+    .tag { font-size: 7.3px; letter-spacing: .07em; border-top-width: 1.5px; padding-top: 1px; }
+    .row p, .solo { font-size: 8.9px; line-height: 1.32; }
+    .solo { margin-top: 5px; }
+
+    .foot { margin-top: 13px; padding-top: 9px; font-size: 8px; }
+
+    .stop, .foot { box-shadow: none; }
   }
 </style>
 
