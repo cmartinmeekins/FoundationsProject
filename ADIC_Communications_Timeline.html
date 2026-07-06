@@ -1,0 +1,241 @@
+<title>ADIC Communications Timeline</title>
+<style>
+  :root {
+    --paper:      #F5F3EE;
+    --panel:      #FBFAF6;
+    --ink:        #1B2028;
+    --ink-soft:   #414B57;
+    --muted:      #7C7566;
+    --hair:       #E4DFD4;
+    --brass:      #9C7A3C;
+    --brass-deep: #7E6230;
+    --slate:      #4A5A6A;
+    --rail:       #D8CFBC;
+    --shadow:     0 1px 2px rgba(27,32,40,.05), 0 8px 24px rgba(27,32,40,.06);
+    --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:#12161C; --panel:#181E26; --ink:#ECE7DC; --ink-soft:#C3BEB2;
+      --muted:#8B8577; --hair:#2A323C; --brass:#C9A45C; --brass-deep:#B08C48;
+      --slate:#8FA3B5; --rail:#39424D;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:#12161C; --panel:#181E26; --ink:#ECE7DC; --ink-soft:#C3BEB2;
+    --muted:#8B8577; --hair:#2A323C; --brass:#C9A45C; --brass-deep:#B08C48;
+    --slate:#8FA3B5; --rail:#39424D;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px rgba(0,0,0,.35);
+  }
+  :root[data-theme="light"] {
+    --paper:#F5F3EE; --panel:#FBFAF6; --ink:#1B2028; --ink-soft:#414B57;
+    --muted:#7C7566; --hair:#E4DFD4; --brass:#9C7A3C; --brass-deep:#7E6230;
+    --slate:#4A5A6A; --rail:#D8CFBC;
+    --shadow:0 1px 2px rgba(27,32,40,.05), 0 8px 24px rgba(27,32,40,.06);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--sans); line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "kern" 1;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 56px 32px 72px; }
+
+  /* ---------- masthead ---------- */
+  .eyebrow {
+    font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--brass-deep); font-weight: 700; margin: 0 0 14px;
+  }
+  h1 {
+    font-family: var(--serif); font-weight: 700; color: var(--ink);
+    font-size: clamp(30px, 5vw, 44px); line-height: 1.04; letter-spacing: -0.01em;
+    margin: 0; text-wrap: balance;
+  }
+  .sub {
+    color: var(--muted); font-size: 12.5px; letter-spacing: .04em;
+    margin: 12px 0 0;
+  }
+  .rule { height: 2px; background: var(--brass); width: 64px; margin: 22px 0 26px; border-radius: 2px; }
+
+  .brief {
+    background: var(--panel); border: 1px solid var(--hair);
+    border-left: 3px solid var(--brass);
+    border-radius: 4px; padding: 18px 22px; box-shadow: var(--shadow);
+    font-size: 15px; color: var(--ink-soft); line-height: 1.58;
+  }
+  .brief b { color: var(--ink); }
+
+  /* ---------- key terms strip ---------- */
+  .terms {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: var(--hair); border: 1px solid var(--hair);
+    border-radius: 4px; overflow: hidden; margin: 18px 0 4px;
+  }
+  .term { background: var(--panel); padding: 14px 16px; }
+  .term .k { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+  .term .v { font-family: var(--serif); font-size: 18px; color: var(--ink); margin-top: 4px; font-variant-numeric: tabular-nums; }
+  .term .v small { font-family: var(--sans); font-size: 11.5px; color: var(--ink-soft); font-variant-numeric: normal; }
+  @media (max-width: 620px) { .terms { grid-template-columns: repeat(2,1fr); } }
+
+  /* ---------- timeline ---------- */
+  .tl { position: relative; margin: 44px 0 0; padding-left: 34px; }
+  .tl::before {
+    content: ""; position: absolute; left: 7px; top: 6px; bottom: 10px;
+    width: 2px; background: var(--rail);
+  }
+  .stop { position: relative; padding: 0 0 30px; }
+  .stop:last-child { padding-bottom: 0; }
+  .stop::before {
+    content: ""; position: absolute; left: -34px; top: 4px;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--brass); border: 3px solid var(--paper);
+    box-shadow: 0 0 0 1px var(--brass);
+  }
+  .stop.upcoming::before {
+    background: var(--paper); box-shadow: 0 0 0 1px var(--brass);
+    border: 3px solid var(--paper);
+  }
+  .stop.upcoming::after {
+    content: ""; position: absolute; left: -30px; top: 8px;
+    width: 8px; height: 8px; border-radius: 50%; background: var(--brass);
+  }
+
+  .date {
+    font-family: var(--serif); color: var(--brass-deep);
+    font-size: 13px; font-weight: 700; letter-spacing: .02em;
+    display: block; margin-bottom: 2px;
+  }
+  .stop h2 {
+    font-family: var(--serif); font-weight: 700; color: var(--ink);
+    font-size: 19px; line-height: 1.2; margin: 0; letter-spacing: -0.005em;
+    text-wrap: balance;
+  }
+  .who { color: var(--muted); font-size: 12.5px; margin: 3px 0 0; font-style: italic; }
+
+  .rows { margin: 12px 0 0; display: flex; flex-direction: column; gap: 8px; }
+  .row {
+    display: grid; grid-template-columns: 132px 1fr; gap: 14px;
+    align-items: baseline;
+  }
+  .tag {
+    font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase;
+    font-weight: 700; color: var(--slate); padding-top: 2px;
+    border-top: 2px solid var(--hair); display: inline-block; width: 100%;
+  }
+  .tag.pos  { color: var(--brass-deep); border-color: var(--brass); }
+  .tag.note { color: var(--muted); }
+  .row p { margin: 0; font-size: 13.5px; color: var(--ink-soft); line-height: 1.52; }
+  .row p b { color: var(--ink); font-weight: 600; }
+  .solo { font-size: 13.5px; color: var(--ink-soft); line-height: 1.52; margin: 10px 0 0; }
+  @media (max-width: 560px) {
+    .row { grid-template-columns: 1fr; gap: 3px; }
+    .tag { border-top: none; width: auto; padding-top: 0; }
+  }
+
+  .foot {
+    margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--hair);
+    color: var(--muted); font-size: 11px; letter-spacing: .04em;
+    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  }
+
+  @media print {
+    body { background: #fff; }
+    .wrap { padding: 24px; max-width: 100%; }
+    .brief, .term, .stop { box-shadow: none; }
+    .stop { break-inside: avoid; }
+  }
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">Investor Relations · Confidential</p>
+  <h1>ADIC Communications Timeline</h1>
+  <p class="sub">Chronological record of the ADIC relationship through written performance diligence, 9&ndash;10 June 2026 · 6 July 2026</p>
+  <div class="rule"></div>
+
+  <div class="tl">
+
+    <div class="stop">
+      <span class="date">Late February 2026</span>
+      <h2>Initial contact <span style="font-weight:400;color:var(--muted);font-size:14px;">(background)</span></h2>
+      <p class="solo">Early sizing intelligence: a $100 to $300&nbsp;million ticket, core around $250&nbsp;million,
+        open to both an SMA and a commingled fund.</p>
+    </div>
+
+    <div class="stop">
+      <span class="date">8 April 2026</span>
+      <h2>First diligence call</h2>
+      <p class="who">Arjun Baskaran, Nick Johnston</p>
+      <div class="rows">
+        <div class="row"><span class="tag pos">Positions</span><p>Longs walked &mdash; <b>BMRN</b> (largest), <b>ELVN</b> (roughly a $2&nbsp;billion drug, data in 2029), <b>NUVL</b>, <b>CAPR</b> (management the perceived risk), <b>AMLX</b>, <b>PCVX</b>; the <b>TERNS</b> takeout realized. Detractor &mdash; <b>MNKD</b> (long), a roughly 1&nbsp;percent February loss after partner United Therapeutics announced a competing inhaled device.</p></div>
+        <div class="row"><span class="tag">Construction</span><p>Nets kept tight, gross around 144&nbsp;percent; the short book was tactically driven entering April (the fundamental shorts had played out in January), not structural. A $200&nbsp;million hard cap was set for the July close, with a November window.</p></div>
+        <div class="row"><span class="tag">Market</span><p>Soren's framing &mdash; biotech the most rational healthcare sector in March; six takeouts expected September through December; JHC realized a March takeout (TERNS, roughly a 5&nbsp;percent premium) while keeping nets tight.</p></div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <span class="date">12 May 2026</span>
+      <h2>In-office IDD visit</h2>
+      <p class="who">CIO Shiv Srinivasan and roughly six team members; Arjun virtual</p>
+      <div class="rows">
+        <div class="row"><span class="tag">Construction</span><p>At least half the book is commercial, and JHC is more likely to short binaries than own them. Sizing caps: longs 15&nbsp;percent cost and 17&nbsp;percent market, shorts 10&nbsp;percent cost and 12&nbsp;percent market. Management quality is assessed as a binary factor, which resonated strongly with Shiv. The book is not organized by disease area, though it tilts toward oncology and I&amp;I for takeout probability; JHC would consider Japan.</p></div>
+        <div class="row"><span class="tag pos">Positions</span><p>Biggest short is <b>LLY</b> (we are short GLP-1s, period); would short <b>Moderna</b>; dislikes <b>BEAM</b> but would not size a large short given the small cap; short <b>WST</b> versus long <b>HIMS</b> as a cross-sector example. Longs discussed: <b>AMLX</b> (late-third-quarter trial), <b>ELVN</b> (35&nbsp;percent IRR, takeout candidate), <b>TRVI</b> (chronic cough), <b>BMRN</b> (below DCF, $52 to $80, roughly 12&nbsp;percent of NAV), <b>GILD</b> and <b>UCB</b> (buying); <b>ERAS</b> and <b>Revolution Medicine</b> in the day-one book.</p></div>
+        <div class="row"><span class="tag">Market</span><p>Biotech has been ADIC's best-performing asset class for two years; portfolio biotech beta is roughly 0.2; the double-digit net-return mandate and the net-exposure lean are acceptable. Discussed run-up-trade dynamics. Soren noted he has never wanted to short biotech less, but LLY is a structural GLP-1 short, not a biotech short, and the longs have been held since day one.</p></div>
+        <div class="row"><span class="tag note">Materials</span><p>Shared the coverage-universe handout, the top-five longs snapshot, and the ELVN case study. <i>(Keep straight: coverage stated as 200 names verbally versus 250 in the handout.)</i></p></div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <span class="date">2 June 2026</span>
+      <h2>IDD analyst call &mdash; Elizabeth Leitner</h2>
+      <p class="who">Arjun, Nick</p>
+      <div class="rows">
+        <div class="row"><span class="tag">Construction</span><p>The philosophy skews to valuation shorts over event-driven shorts, with disciplined entry and a required margin of safety; there is no fixed multiple rule (not 4x peak sales or 20x EPS).</p></div>
+        <div class="row"><span class="tag pos">Positions</span><p><b>INSM</b> (a hype phase expected to meet reality), <b>Madrigal</b>, <b>Exelixis</b> (added to the short on the way up), and <b>ALNY</b> (put on, taken off, and re-entered).</p></div>
+        <div class="row"><span class="tag">Market</span><p>Hype-cycle-versus-reality in high-multiple names, and sentiment-driven multiples, were the throughline.</p></div>
+        <div class="row"><span class="tag note">Request</span><p>Full long and short coverage list, positions of size, the large-long theses (what the market is missing), and how EL engages Soren.</p></div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <span class="date">Early June 2026</span>
+      <h2>IDD analyst calls &mdash; Adam Czekanski &amp; Elliot Xu</h2>
+      <div class="rows">
+        <div class="row"><span class="tag pos">Positions</span><p>Elliot pitched <b>ABVX</b> short; Soren instead sees a $2 to $3&nbsp;billion drug and was not eager to press the short after the move.</p></div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <span class="date">4 June 2026</span>
+      <h2>IC-referral call &mdash; Abdulrahman Al-Humaidhi (ED)</h2>
+      <p class="who">with Arjun</p>
+      <div class="rows">
+        <div class="row"><span class="tag pos">Positions</span><p><b>BMRN</b> (conviction it can be 50&nbsp;percent or more higher in a year; cheap because historically poorly run, with Voxzogo competition coming, but survey work supports growth); <b>IBRX</b> (monumentally overvalued, with meme-stock traits); <b>TRVI</b> (GSK readout coming); <b>TEVA</b> (short); <b>PCVX</b> (flipped).</p></div>
+        <div class="row"><span class="tag">Construction</span><p>BMRN sized at low double digits of book risk, reaching 15&nbsp;percent only with a pivoting catalyst; a very large short is roughly 10&nbsp;percent risk contribution; longs are held with low turnover while shorts trade frequently; IBRX kept under 3&nbsp;percent to preserve room to defend; catalyst and value are not two separate buckets.</p></div>
+        <div class="row"><span class="tag">Market</span><p>Voxzogo competitive dynamics; meme-stock and retail overvaluation on the short side; JHC's AI tooling as a process edge.</p></div>
+        <div class="row"><span class="tag note">Outcome</span><p>Internal approval to proceed to IC &mdash; full steam ahead.</p></div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <span class="date">9&ndash;10 June 2026</span>
+      <h2>Written performance diligence</h2>
+      <p class="who">Marty to Arjun and Nick</p>
+      <div class="rows">
+        <div class="row"><span class="tag note">Materials</span><p>April and May tear sheets, the May investor report, the May attribution report, an organizational-cost estimate, and the GP commitment (roughly 3&nbsp;percent).</p></div>
+        <div class="row"><span class="tag pos">Attribution</span><p>The two months were the short book fighting the tape on large-caps &mdash; <b>LLY</b> and <b>EXEL</b> together account for roughly $19&nbsp;million of year-to-date losses &mdash; partially offset by idiosyncratic long wins (GILD, TRVI, PHVS, BCAX) and working shorts (PCVX, INCY). The biggest longs, BMRN, VRTX, and AMLX, were all year-to-date losers with theses intact but uncatalyzed. <b>April +2.00&nbsp;percent</b> (CAPR up 13&nbsp;percent over two weeks, NUVL strong, BMRN late-positive on the Amicus news; offset by LLY up roughly 10&nbsp;percent intraday on 30&nbsp;April on a 56&nbsp;percent revenue beat and a roughly $2&nbsp;billion guidance raise, and a brief HIMS squeeze after the 23&nbsp;April LLY partnership). <b>May &minus;2.34&nbsp;percent</b> (LLY up roughly 14&nbsp;percent to all-time highs near $1,100; BMRN up 8&nbsp;percent on 21&nbsp;May Voxzogo Phase&nbsp;3 hypochondroplasia data; AMLX flat pending LUCIDITY; HIMS down 11&nbsp;percent on the 11&nbsp;May miss).</p></div>
+        <div class="row"><span class="tag">Construction</span><p>Nets kept tight throughout; commercial emphasis; longs held since day one.</p></div>
+        <div class="row"><span class="tag">Market</span><p>LLY was the dominant driver in both months, a structural GLP-1 short rather than a biotech short, against a degrossing and AI-rotation backdrop.</p></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="foot">
+    <span>Jones Hill Capital &middot; Investor Relations</span>
+    <span>Confidential &mdash; for internal use</span>
+  </div>
+</div>
